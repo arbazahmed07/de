@@ -48,3 +48,30 @@ db.books.deleteOne({title: "OS"})
 
 // Delete multiple books
 db.books.deleteMany({price: {$lt: 400}})
+
+
+
+# SVD
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn import datasets
+from sklearn.decomposition import PCA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
+# Load dataset
+iris = datasets.load_iris()
+X = iris.data
+y = iris.target
+
+df = pd.DataFrame(X)
+
+U, S, Vt = np.linalg.svd(df, full_matrices=False)
+
+# Plot first two components
+plt.scatter(U[:,0], U[:,1], c=y)
+plt.xlabel("Component 1")
+plt.ylabel("Component 2")
+plt.title("SVD")
+plt.show()
